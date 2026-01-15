@@ -1,83 +1,79 @@
 const express = require('express');
 const app = express();
 
-// Home route
-app.get('/', (req, res) => {
-    res.send('Home Page!');
-});
-
-// About route
-app.get('/about', (req, res) => {
-    res.send('About Page!');
-});
-
-// Dynamic product route
-app.get('/products/:x', (req, res) => {
-    console.log(req.params);
-    res.send('ok');
-});
-
-// Simple GET route
-app.get('/getData', (req, res) => {
-    res.send('this is get data route');
-});
-
-// Movie data
-const movie = [
-    {
-        name: 'avanger',
-        rating: 8.5
-    },
-    {
-        name: 'pushpa',
-        rating: 9.5
-    },
-    {
-        name: 'bahubali',
-        rating: 9.7
-    },
-    {
-        name: 'ironman',
-        rating: 8.9
-    }
-];
-
-// Get movie by query parameter
-app.get('/getMovies', (req, res) => {
-    console.log(req.query);
-
-    const name = req.query.name;
-    const data = movie.find(item => item.name === name);
-
-    if (data) {
-        res.json(data);
-    } else {
-        res.json({ message: 'movie not found' });
-    }
-});
-
-app.get('/cat', (req,res) => {
-    res.send("Meeoowe 1");
+app.get('/',(req,res)=>{
+    res.send('home page')
 })
 
-app.get('/cat', (req,res) => {
-    res.send("Meeoowe 2");
+app.get('/about',(req,res)=>{
+    res.send('About page')
 })
 
-
-// IN EXPRESS 4 VERSION :-
-
-// app.get('*', (req,res)=>{
-//     res.send("404 Page Not Found!");
+// app.get('/products/1',(req,res)=>{
+//     res.send('ok')
+// })
+// app.get('/products/2',(req,res)=>{
+//     res.send('ok')
 // })
 
+app.get('/products/:x',(req,res)=>{
+    console.log(req.params);
+    res.send('ok');
+})
 
-app.get(/.*/, (req,res)=>{
-    res.send("404 Page Not Found!");
+app.get('/getData',(req,res)=>{
+    console.log(req.query);
+    res.send("this is geData routes")
+})
+
+const movies = [
+    {
+        name:'avanger',
+        rating:8.5
+    },
+    {
+        name:'batman',
+        rating:7.5
+    },
+    {
+        name:'pushpa',
+        rating:9.5
+    },
+    {
+        name:'bahubali',
+        rating:9.3
+    },
+]
+
+app.get('/getMovies',(req,res)=>{
+    console.log(req.query);
+    let name = req.query.name;
+    let data = movies.find((item)=> item.name==name)
+    if(data){
+        res.json(data);
+    }
+    else{
+      res.send('movie not found')
+    }
 })
 
 
-// Server start
-app.listen(5000, () => {
-    console.log('Server is running on http://localhost:5000');
-});
+app.get('/cat',(req,res)=>{
+    res.send('Meowww 1')
+})
+app.get('/cat',(req,res)=>{
+    res.send('Meowww 2')
+})
+
+// in express 4 version
+// app.get('*',(req,res)=>{
+//     res.send("404 page not found")
+// })
+
+app.get(/.*/,(req,res)=>{
+    res.send("404 page not found")
+})
+
+app.listen(5000,()=>{
+    console.log('server run at port 5000')
+})
