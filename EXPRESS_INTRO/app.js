@@ -1,79 +1,61 @@
 const express = require('express');
 const app = express();
 
+
 app.get('/',(req,res)=>{
-    res.send('home page')
+    res.send("home page")
 })
 
-app.get('/about',(req,res)=>{
-    res.send('About page')
-})
-
-// app.get('/products/1',(req,res)=>{
-//     res.send('ok')
-// })
-// app.get('/products/2',(req,res)=>{
-//     res.send('ok')
-// })
-
-app.get('/products/:x',(req,res)=>{
-    console.log(req.params);
-    res.send('ok');
-})
-
-app.get('/getData',(req,res)=>{
+app.get('/getdata',(req,res)=>{
     console.log(req.query);
-    res.send("this is geData routes")
+    res.send('ok')
 })
 
-const movies = [
+let movies = [
     {
         name:'avanger',
-        rating:8.5
+        rating: 8.5
     },
     {
-        name:'batman',
-        rating:7.5
+        name:'kgf',
+        rating: 7.5
+    },
+    {
+        name:'dhurandhar',
+        rating: 6.5
     },
     {
         name:'pushpa',
-        rating:9.5
+        rating: 9.5
     },
-    {
-        name:'bahubali',
-        rating:9.3
-    },
+    
 ]
 
-app.get('/getMovies',(req,res)=>{
-    console.log(req.query);
+app.get('/getmovie',(req,res)=>{
     let name = req.query.name;
     let data = movies.find((item)=> item.name==name)
     if(data){
-        res.json(data);
+        res.json(data)
     }
     else{
-      res.send('movie not found')
+        res.send('movie does not exits')
     }
+    
+
 })
 
 
-app.get('/cat',(req,res)=>{
-    res.send('Meowww 1')
-})
-app.get('/cat',(req,res)=>{
-    res.send('Meowww 2')
+app.get('/temp',(req,res)=>{
+    res.send(`<h1>This is tmp routes</h1>`)
 })
 
-// in express 4 version
-// app.get('*',(req,res)=>{
-//     res.send("404 page not found")
-// })
+const path = require('path');
+const loc = path.join(__dirname,'index.html')
 
-app.get(/.*/,(req,res)=>{
-    res.send("404 page not found")
+app.get('/file',(req,res)=>{
+    res.sendFile(loc)
 })
 
-app.listen(5000,()=>{
-    console.log('server run at port 5000')
+app.listen(4000,()=>{
+    console.log('server run on port 4000')
 })
