@@ -29,6 +29,29 @@ app.post('/users',(req,res)=>{
     res.redirect('/users')
 })
 
+app.get('/users/:id',(req,res)=>{
+    // const id = req.params.id
+    const {id} = req.params;
+    let user = users.find((item)=> item.id==id)
+    res.render('show',{user})
+})
+
+app.get('/users/:id/edit',(req,res)=>{
+    // const id = req.params.id
+    const {id} = req.params;
+    let user = users.find((item)=> item.id==id)
+    res.render('edit',{user})
+})
+app.post('/abc/:id',(req,res)=>{
+    const {id} = req.params;
+    let user = users.find((item)=> item.id==id);
+    const {name,password,age,city} = req.body;
+    user.name=name;
+    user.password=password;
+    user.city=city;
+    user.age=age;
+    res.redirect('/users')
+})
 const PORT = 5000;
 app.listen(PORT,()=>{
     console.log('server run at port',PORT);
