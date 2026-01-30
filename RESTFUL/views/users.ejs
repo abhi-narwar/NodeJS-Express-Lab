@@ -11,14 +11,16 @@
     <div class="container">
        <% for(let user of users){ %>
             <div class="card">
-                <h3>Name: <%= user.name %></h3>
-                <p>Age: <%= user.age %></p>
-                <p>City: <%= user.city %></p>
-                <a href="/users/<%=user.id%>">Show</a>
-                <a href="/users/<%=user.id%>/edit">Edit</a>
+                <h3>Name: <%=user.name%></h3>
+                <P>Age: <%=user.age%></P>
+                <P>City: <%=user.city%></P>
+                <button><a href="/users/<%= user.id %>">Show</a></button>
+                <button><a href="/users/<%= user.id %>/edit">Edit</a></button>
+                <form action="/users/<%=user.id%>?_method=delete" method="post">
+                    <button style="margin-top: 5px;">Delete</button>
+                </form>
             </div>
        <% } %>
     </div>
-
 </body>
 </html>

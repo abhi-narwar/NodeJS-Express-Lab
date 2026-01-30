@@ -1,32 +1,34 @@
 const users = [
     {
-        id:1,
-        name:'rahul',
-        password:'rahul123',
-        age:25,
-        city:'Delhi'
+        id: 1,
+        name: 'rahul',
+        age: 23,
+        city: 'Delhi',
+        password: 'rahul123'
     },
     {
-        id:2,
-        name:'ajay',
-        password:'ajay123',
-        age:32,
-        city:'Mumbai'
+        id: 2,
+        name: 'harsh',
+        age: 21,
+        city: 'Mumbai',
+        password: 'harsh123'
     },
     {
-        id:3,
-        name:'teena',
-        password:'teena123',
-        age:21,
-        city:'Noida'
+        id: 3,
+        name: 'ram',
+        age: 22,
+        city: 'Delhi',
+        password: 'ram123'
     },
     {
-        id:4,
-        name:'meena',
-        password:'meena123',
-        age:27,
-        city:'pune'
-    },
-]
+        id: 4,
+        name: 'jay',
+        age: 25,
+        city: 'Jaipur',
+        password: 'jay123'
+    }
+];
 
 module.exports = users;
+
+
